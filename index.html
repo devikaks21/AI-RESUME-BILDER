@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ResumeAI — Intelligent Resume Builder with AI-powered writing assistance, live A4 preview, ATS scoring, and instant PDF export.">
+  <title>ResumeAI — Intelligent Resume Builder</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core App Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/builder.css">
+  <link rel="stylesheet" href="css/preview.css">
+  <link rel="stylesheet" href="css/voice-assistant.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+
+  <!-- html2pdf.js CDN for Client-Side High-Res PDF Export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Global Sticky Navbar
+       ========================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container navbar-container">
+      <a href="#hero" class="brand-logo">
+        <span class="brand-icon">✦</span>
+        <span class="brand-name">Resume<span>AI</span></span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#templates" class="nav-link">Templates</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#builderWorkspace" class="nav-link" data-jump-to="builder">Builder</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-outline btn-sm" id="headerBuildPdfBtn" title="Export PDF">
+          <span>📄</span> Export PDF
+        </button>
+        <button class="btn btn-primary btn-sm" data-jump-to="builder">
+          <span>✦</span> Build Resume
+        </button>
+        <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Toggle Navigation Menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <a href="#features" class="nav-link">Features</a>
+    <a href="#templates" class="nav-link">Templates</a>
+    <a href="#how-it-works" class="nav-link">How It Works</a>
+    <a href="#builderWorkspace" class="nav-link" data-jump-to="builder">Resume Builder</a>
+    <div style="display:flex; gap:10px; margin-top:10px;">
+      <button class="btn btn-primary btn-sm" style="flex:1;" data-jump-to="builder">Launch Builder</button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Hero Section
+       ========================================================================== -->
+  <section class="hero-section" id="hero">
+    <div class="hero-glow-bg"></div>
+    <div class="container hero-grid">
+      <!-- Left Content -->
+      <div class="hero-content">
+        <div class="hero-badge-wrap">
+          <span class="badge badge-ai">
+            <span class="badge-glow-dot"></span>
+            ✦ AI-Powered Resume Builder
+          </span>
+        </div>
+
+        <h1 class="hero-title">
+          Build a Resume
+          <span class="text-gradient">That Gets Noticed.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Create a professional resume with AI-powered writing assistance, beautiful templates, ATS-friendly scoring, and instant pixel-perfect PDF export.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg" data-jump-to="builder">
+            <span>✦</span> Create My Resume
+          </button>
+          <a href="#templates" class="btn btn-secondary btn-lg">
+            Explore Templates
+          </a>
+        </div>
+
+        <div class="hero-stats-mini">
+          <div class="stat-mini-item">
+            <span class="stat-mini-val">4.9/5</span>
+            <span class="stat-mini-label">Recruiter Rating</span>
+          </div>
+          <div class="stat-mini-item">
+            <span class="stat-mini-val">100%</span>
+            <span class="stat-mini-label">Free & Private</span>
+          </div>
+          <div class="stat-mini-item">
+            <span class="stat-mini-val">ATS 95+</span>
+            <span class="stat-mini-label">Optimized Output</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right 3D Realistic HTML/CSS Resume Preview -->
+      <div class="hero-preview-wrapper">
+        <div class="hero-resume-card animate-float">
+          <!-- Floating Status Badges -->
+          <div class="preview-badge-floating">
+            <span>✦</span> AI Writing Optimized
+          </div>
+          <div class="preview-badge-floating-score">
+            <span>✓</span> 94/100 ATS Score
+          </div>
+
+          <!-- Mini Document Internal Styling -->
+          <div class="hero-doc-header">
+            <div class="hero-doc-name">ALEX MORGAN</div>
+            <div class="hero-doc-role">Computer Science Student • Software Developer</div>
+            <div class="hero-doc-contacts">
+              <span>+91 98765 43210</span>
+              <span>alex.morgan@university.edu</span>
+              <span>github.com/alexmorgan-dev</span>
+            </div>
+          </div>
+
+          <div class="hero-doc-section-title">
+            <span>Summary</span>
+            <span style="color:#7C5CFF; font-size:10px;">✦ Enhanced</span>
+          </div>
+          <p class="hero-doc-text">
+            Passionate Computer Science student skilled in Python, JavaScript, and full-stack web engineering. Experienced in building collaborative software tools and responsive student applications with strong problem-solving skills.
+          </p>
+
+          <div class="hero-doc-section-title">Skills</div>
+          <div class="hero-doc-tags">
+            <span class="hero-doc-tag">Python</span>
+            <span class="hero-doc-tag">JavaScript</span>
+            <span class="hero-doc-tag">React</span>
+            <span class="hero-doc-tag">Node.js</span>
+            <span class="hero-doc-tag">SQL</span>
+            <span class="hero-doc-tag">Git & GitHub</span>
+          </div>
+
+          <div class="hero-doc-section-title">Key Projects</div>
+          <div class="hero-doc-project-item">
+            <div class="hero-doc-proj-head">
+              <span class="hero-doc-proj-name">Collaborative Code IDE</span>
+              <span class="hero-doc-proj-tech">React • WebSockets</span>
+            </div>
+            <p class="hero-doc-text" style="font-size:0.72rem;">
+              Developed a real-time collaborative code editor supporting multi-user synchronization and virtual sandbox execution.
+            </p>
+          </div>
+
+          <div class="hero-doc-project-item">
+            <div class="hero-doc-proj-head">
+              <span class="hero-doc-proj-name">Campus Course & Schedule Planner</span>
+              <span class="hero-doc-proj-tech">Next.js • PostgreSQL</span>
+            </div>
+            <p class="hero-doc-text" style="font-size:0.72rem;">
+              Engineered an interactive student scheduling web app serving 1,200+ undergraduate peers with automated conflict detection.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Trust / Value Bar
+       ========================================================================== -->
+  <section class="trust-bar-section">
+    <div class="container trust-bar-flex">
+      <div class="trust-item">
+        <div class="trust-icon-box">⚡</div>
+        <span>Fast Creation</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-box">🎨</div>
+        <span>Premium Templates</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-box">🤖</div>
+        <span>AI Assistance</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-box">📄</div>
+        <span>Clean PDF Export</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon-box">📱</div>
+        <span>Fully Responsive</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Features Section
+       ========================================================================== -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Powerful Capabilities</span>
+        <h2 class="section-title">
+          Everything You Need<br>
+          <span class="text-gradient">To Build a Better Resume.</span>
+        </h2>
+        <p class="section-desc">
+          Engineered for college students, fresh graduates, developers, and data analysts aiming to land interviews with modern, recruiter-approved resumes.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div class="feature-icon">✦</div>
+          <h3 class="feature-card-title">AI Writing Assistant</h3>
+          <p class="feature-card-desc">
+            Instantly polish summaries, project bullets, and experience descriptions with quantified impact and strong action verbs.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3 class="feature-card-title">Professional Templates</h3>
+          <p class="feature-card-desc">
+            Switch between Modern, Classic, Minimal, and ATS-Friendly templates with one click without retyping any content.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div class="feature-icon">👁</div>
+          <h3 class="feature-card-title">Live Preview</h3>
+          <p class="feature-card-desc">
+            Watch your resume format and update in real-time as you type, rendered in true A4 proportions with crisp typography.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3 class="feature-card-title">Resume Checker & Score</h3>
+          <p class="feature-card-desc">
+            Get an instant completeness audit and ATS quality score with actionable checklist recommendations to fill missing gaps.
+          </p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="feature-card">
+          <div class="feature-icon">📄</div>
+          <h3 class="feature-card-title">Pixel-Perfect PDF Export</h3>
+          <p class="feature-card-desc">
+            Download your resume as an uncompressed, recruiter-ready PDF with exact margin handling and zero awkward breaks.
+          </p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="feature-card">
+          <div class="feature-icon">📑</div>
+          <h3 class="feature-card-title">Multiple Resume Versions</h3>
+          <p class="feature-card-desc">
+            Tailor and save specialized resumes for different roles (e.g. Data Analyst vs. Software Engineer) inside your dashboard.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       How It Works Section
+       ========================================================================== -->
+  <section class="section" id="how-it-works" style="background: rgba(13, 17, 23, 0.35);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Simple & Fast Workflow</span>
+        <h2 class="section-title">How ResumeAI Works</h2>
+        <p class="section-desc">Go from a blank screen to a job-ready resume in 5 effortless steps.</p>
+      </div>
+
+      <div class="workflow-track">
+        <div class="workflow-step">
+          <div class="workflow-num-box">01</div>
+          <h4 class="workflow-step-title">Enter Info</h4>
+          <p class="workflow-step-desc">Fill in education, skills, projects, and contact links.</p>
+        </div>
+
+        <div class="workflow-step">
+          <div class="workflow-num-box">02</div>
+          <h4 class="workflow-step-title">Improve With AI</h4>
+          <p class="workflow-step-desc">Enhance your bullet points with high-powered action verbs.</p>
+        </div>
+
+        <div class="workflow-step">
+          <div class="workflow-num-box">03</div>
+          <h4 class="workflow-step-title">Choose Template</h4>
+          <p class="workflow-step-desc">Select from Modern, Classic, Minimal, or ATS-friendly layouts.</p>
+        </div>
+
+        <div class="workflow-step">
+          <div class="workflow-num-box">04</div>
+          <h4 class="workflow-step-title">Live Preview</h4>
+          <p class="workflow-step-desc">Inspect your formatted document and check your ATS quality score.</p>
+        </div>
+
+        <div class="workflow-step">
+          <div class="workflow-num-box">05</div>
+          <h4 class="workflow-step-title">Download PDF</h4>
+          <p class="workflow-step-desc">Export a print-perfect A4 document ready for job portals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Template Showcase Gallery
+       ========================================================================== -->
+  <section class="section" id="templates">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Curated Designs</span>
+        <h2 class="section-title">
+          Explore Our <span class="text-gradient">Professional Templates</span>
+        </h2>
+        <p class="section-desc">
+          Meticulously crafted for readability, visual balance, and maximum applicant tracking system compatibility.
+        </p>
+      </div>
+
+      <div class="templates-grid">
+        <!-- Template 1: Classic -->
+        <div class="template-card">
+          <div class="template-preview-frame">
+            <div class="template-mini-paper">
+              <div class="t-mini-header" style="text-align:center; align-items:center;">
+                <div class="t-mini-line" style="width:65%; background:#111827; height:5px;"></div>
+                <div class="t-mini-line-sm" style="background:#7C5CFF; width:40%;"></div>
+              </div>
+              <div class="t-mini-line" style="width:30%; background:#7C5CFF; height:3px;"></div>
+              <div class="t-mini-line" style="width:100%;"></div>
+              <div class="t-mini-line" style="width:85%;"></div>
+              <div class="t-mini-line" style="width:30%; background:#7C5CFF; height:3px; margin-top:6px;"></div>
+              <div class="t-mini-line" style="width:90%;"></div>
+              <div class="t-mini-line" style="width:70%;"></div>
+            </div>
+          </div>
+          <div class="template-meta">
+            <div class="template-meta-top">
+              <h4 class="template-name">Classic</h4>
+              <span class="template-tag">Executive</span>
+            </div>
+            <p class="template-meta-desc">Single-column professional layout favored by traditional corporations and academia.</p>
+            <div class="template-actions">
+              <button class="btn btn-sm btn-primary" style="flex:1;" data-use-template="classic">Use Template</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 2: Modern -->
+        <div class="template-card">
+          <div class="template-preview-frame">
+            <div class="template-mini-paper" style="padding:0;">
+              <div class="t-mini-2col">
+                <div class="t-mini-sidebar" style="background:#0F172A;">
+                  <div class="t-mini-line" style="background:#7C5CFF; width:70%; height:4px; margin-bottom:8px;"></div>
+                  <div class="t-mini-line" style="background:#475569; width:80%;"></div>
+                  <div class="t-mini-line" style="background:#475569; width:60%;"></div>
+                </div>
+                <div style="padding:10px 8px;">
+                  <div class="t-mini-line" style="background:#0F172A; width:70%; height:5px;"></div>
+                  <div class="t-mini-line" style="background:#7C5CFF; width:45%; height:3px; margin-bottom:8px;"></div>
+                  <div class="t-mini-line" style="width:95%;"></div>
+                  <div class="t-mini-line" style="width:80%;"></div>
+                  <div class="t-mini-line" style="width:90%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="template-meta">
+            <div class="template-meta-top">
+              <h4 class="template-name">Modern</h4>
+              <span class="template-tag" style="color:var(--accent-primary);">Featured</span>
+            </div>
+            <p class="template-meta-desc">Two-column dynamic layout with dark sidebar and timeline milestones for tech roles.</p>
+            <div class="template-actions">
+              <button class="btn btn-sm btn-primary" style="flex:1;" data-use-template="modern">Use Template</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 3: Minimal -->
+        <div class="template-card">
+          <div class="template-preview-frame">
+            <div class="template-mini-paper">
+              <div class="t-mini-header" style="border:none;">
+                <div class="t-mini-line" style="width:60%; background:#000000; height:6px;"></div>
+                <div class="t-mini-line" style="width:35%; background:#9CA3AF; height:3px;"></div>
+              </div>
+              <div class="t-mini-line" style="width:25%; background:#111827; height:3px; margin-top:8px;"></div>
+              <div class="t-mini-line" style="width:100%;"></div>
+              <div class="t-mini-line" style="width:90%;"></div>
+              <div class="t-mini-line" style="width:25%; background:#111827; height:3px; margin-top:8px;"></div>
+              <div class="t-mini-line" style="width:85%;"></div>
+            </div>
+          </div>
+          <div class="template-meta">
+            <div class="template-meta-top">
+              <h4 class="template-name">Minimal</h4>
+              <span class="template-tag">Editorial</span>
+            </div>
+            <p class="template-meta-desc">Ultra-clean typography and generous whitespace emphasizing clarity and poise.</p>
+            <div class="template-actions">
+              <button class="btn btn-sm btn-primary" style="flex:1;" data-use-template="minimal">Use Template</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 4: ATS-Friendly -->
+        <div class="template-card">
+          <div class="template-preview-frame">
+            <div class="template-mini-paper">
+              <div class="t-mini-header" style="text-align:center; align-items:center; border-bottom:1px solid #000;">
+                <div class="t-mini-line" style="width:75%; background:#000000; height:5px;"></div>
+              </div>
+              <div class="t-mini-line" style="width:40%; background:#000000; height:3px; margin-top:6px;"></div>
+              <div class="t-mini-line" style="width:100%;"></div>
+              <div class="t-mini-line" style="width:95%;"></div>
+              <div class="t-mini-line" style="width:40%; background:#000000; height:3px; margin-top:6px;"></div>
+              <div class="t-mini-line" style="width:90%;"></div>
+            </div>
+          </div>
+          <div class="template-meta">
+            <div class="template-meta-top">
+              <h4 class="template-name">ATS-Friendly</h4>
+              <span class="template-tag" style="color:var(--success);">High Match</span>
+            </div>
+            <p class="template-meta-desc">Streamlined text-first structure engineered for 100% automated scanner ingestion.</p>
+            <div class="template-actions">
+              <button class="btn btn-sm btn-primary" style="flex:1;" data-use-template="ats">Use Template</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 5: Tech / Developer -->
+        <div class="template-card">
+          <div class="template-preview-frame">
+            <div class="template-mini-paper" style="border-left:3px solid #7C5CFF; background:#F8FAFC;">
+              <div class="t-mini-header" style="background:#EEF2FF; padding:2px 4px; border-radius:3px;">
+                <div class="t-mini-line" style="width:70%; background:#4338CA; height:4px;"></div>
+                <div class="t-mini-line" style="width:40%; background:#6366F1; height:3px;"></div>
+              </div>
+              <div class="t-mini-line" style="width:30%; background:#7C5CFF; height:3px; margin-top:4px;"></div>
+              <div style="display:flex; gap:3px; margin:2px 0;">
+                <div style="width:25px; height:8px; background:#E0E7FF; border-radius:2px;"></div>
+                <div style="width:25px; height:8px; background:#E0E7FF; border-radius:2px;"></div>
+                <div style="width:25px; height:8px; background:#E0E7FF; border-radius:2px;"></div>
+              </div>
+              <div class="t-mini-line" style="width:30%; background:#7C5CFF; height:3px; margin-top:4px;"></div>
+              <div class="t-mini-line" style="width:95%;"></div>
+              <div class="t-mini-line" style="width:80%;"></div>
+            </div>
+          </div>
+          <div class="template-meta">
+            <div class="template-meta-top">
+              <h4 class="template-name">Tech / Dev</h4>
+              <span class="template-tag" style="color:#00D4FF;">Code Focus</span>
+            </div>
+            <p class="template-meta-desc">Terminal-inspired monospace headers, tech chip clouds, and repository highlights.</p>
+            <div class="template-actions">
+              <button class="btn btn-sm btn-primary" style="flex:1;" data-use-template="tech">Use Template</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 6: Executive -->
+        <div class="template-card">
+          <div class="template-preview-frame">
+            <div class="template-mini-paper" style="font-family:Georgia, serif;">
+              <div class="t-mini-header" style="text-align:center; align-items:center; border-bottom:2px double #1F2937;">
+                <div class="t-mini-line" style="width:65%; background:#1F2937; height:5px;"></div>
+                <div class="t-mini-line-sm" style="background:#7C5CFF; width:35%;"></div>
+              </div>
+              <div class="t-mini-line" style="width:40%; background:#1F2937; height:3px; margin:6px auto 3px;"></div>
+              <div class="t-mini-line" style="width:95%;"></div>
+              <div class="t-mini-line" style="width:85%;"></div>
+              <div class="t-mini-line" style="width:40%; background:#1F2937; height:3px; margin:6px auto 3px;"></div>
+              <div class="t-mini-line" style="width:90%;"></div>
+            </div>
+          </div>
+          <div class="template-meta">
+            <div class="template-meta-top">
+              <h4 class="template-name">Executive</h4>
+              <span class="template-tag" style="color:#F59E0B;">Prestige</span>
+            </div>
+            <p class="template-meta-desc">Timeless serif typography, double border accents, and centered leadership alignment.</p>
+            <div class="template-actions">
+              <button class="btn btn-sm btn-primary" style="flex:1;" data-use-template="executive">Use Template</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 7: Creative Banner -->
+        <div class="template-card">
+          <div class="template-preview-frame">
+            <div class="template-mini-paper" style="padding:0;">
+              <div style="background:#7C5CFF; height:45px; padding:6px 8px; display:flex; flex-direction:column; justify-content:center;">
+                <div class="t-mini-line" style="width:60%; background:#FFFFFF; height:5px; margin-bottom:3px;"></div>
+                <div class="t-mini-line" style="width:40%; background:rgba(255,255,255,0.7); height:3px;"></div>
+              </div>
+              <div style="padding:8px;">
+                <div class="t-mini-line" style="width:30%; background:#7C5CFF; height:3px; margin-bottom:4px;"></div>
+                <div class="t-mini-line" style="width:95%;"></div>
+                <div class="t-mini-line" style="width:85%;"></div>
+                <div class="t-mini-line" style="width:30%; background:#7C5CFF; height:3px; margin:6px 0 4px;"></div>
+                <div class="t-mini-line" style="width:90%;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="template-meta">
+            <div class="template-meta-top">
+              <h4 class="template-name">Creative</h4>
+              <span class="template-tag" style="color:#EC4899;">Banner</span>
+            </div>
+            <p class="template-meta-desc">Vibrant full-width header banner and pill badges for product and design roles.</p>
+            <div class="template-actions">
+              <button class="btn btn-sm btn-primary" style="flex:1;" data-use-template="creative">Use Template</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Template 8: Compact One-Page -->
+        <div class="template-card">
+          <div class="template-preview-frame">
+            <div class="template-mini-paper" style="padding:8px 6px;">
+              <div style="display:flex; justify-content:space-between; border-bottom:1px solid #111; padding-bottom:3px; margin-bottom:4px;">
+                <div class="t-mini-line" style="width:45%; background:#111; height:4px;"></div>
+                <div class="t-mini-line" style="width:35%; background:#6B7280; height:3px;"></div>
+              </div>
+              <div class="t-mini-line" style="width:25%; background:#7C5CFF; height:2px; margin-bottom:2px;"></div>
+              <div class="t-mini-line" style="width:100%; height:2px; margin-bottom:2px;"></div>
+              <div class="t-mini-line" style="width:95%; height:2px; margin-bottom:2px;"></div>
+              <div class="t-mini-line" style="width:25%; background:#7C5CFF; height:2px; margin:3px 0 2px;"></div>
+              <div class="t-mini-line" style="width:100%; height:2px; margin-bottom:2px;"></div>
+              <div class="t-mini-line" style="width:90%; height:2px; margin-bottom:2px;"></div>
+              <div class="t-mini-line" style="width:25%; background:#7C5CFF; height:2px; margin:3px 0 2px;"></div>
+              <div class="t-mini-line" style="width:95%; height:2px;"></div>
+            </div>
+          </div>
+          <div class="template-meta">
+            <div class="template-meta-top">
+              <h4 class="template-name">Compact</h4>
+              <span class="template-tag" style="color:#10B981;">1-Page Fit</span>
+            </div>
+            <p class="template-meta-desc">High-density grid engineered specifically to pack rich experiences into exactly one page.</p>
+            <div class="template-actions">
+              <button class="btn btn-sm btn-primary" style="flex:1;" data-use-template="compact">Use Template</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Core Resume Builder Workspace
+       ========================================================================== -->
+  <main class="builder-section" id="builderWorkspace">
+    <div class="container">
+
+      <!-- Top Builder Action Bar -->
+      <div class="builder-header-bar">
+        <div class="builder-title-group">
+          <h2 class="builder-title">Resume Builder Workspace</h2>
+          <p class="builder-subtitle">Edit fields, polish with AI, and review live A4 changes instantly.</p>
+        </div>
+
+        <div class="builder-actions-top">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <label for="studentPresetSelect" style="font-size:0.82rem; font-weight:700; color:var(--accent-secondary); white-space:nowrap;">👨‍🎓 Student Field:</label>
+            <select id="studentPresetSelect" class="form-select" style="padding:6px 12px; font-size:0.84rem; width:auto; border-color:var(--border-medium); background:rgba(22,29,38,0.95);" title="Switch student major preset">
+              <option value="cs">Computer Science & Engineering</option>
+              <option value="data">Data Science & Analytics</option>
+              <option value="it">Information Technology (BCA / MCA)</option>
+              <option value="business">Business & Commerce (BBA / Mgmt)</option>
+              <option value="blank">✨ Blank (Start from Scratch)</option>
+            </select>
+          </div>
+          <button class="btn btn-outline btn-sm" id="resetSampleDataBtn" title="Reset sample data">
+            ↻ Reset
+          </button>
+          <button class="btn btn-outline btn-sm" id="exportJsonBtn" title="Backup JSON">
+            ↓ Backup JSON
+          </button>
+          <input type="file" id="importJsonFileInput" accept=".json" style="display:none;">
+          <button class="btn btn-outline btn-sm" id="importJsonBtn" title="Import JSON">
+            ↑ Import JSON
+          </button>
+          <button class="btn btn-secondary btn-sm" id="saveResumeBtn">
+            ✓ Save Resume
+          </button>
+          <button class="btn btn-primary btn-sm" id="exportPdfBtn">
+            <span>📄</span> Download PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- Master 2-Column Split: Form Editor + Sticky A4 Preview -->
+      <div class="builder-layout-grid">
+
+        <!-- LEFT COLUMN: Form Editor & Controls -->
+        <div class="builder-editor-column" id="builderEditorColumn">
+
+          <!-- Completion Progress Card -->
+          <div class="builder-progress-card">
+            <div class="progress-header">
+              <span class="progress-label">
+                <span>✦</span> Resume Completion
+              </span>
+              <span class="progress-val-badge" id="overallProgressBadge">78%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-bar-fill" id="overallProgressBarFill" style="width: 78%;"></div>
+            </div>
+          </div>
+
+          <!-- Section Navigation Tabs -->
+          <nav class="section-tabs-nav" aria-label="Resume Section Tabs">
+            <button class="section-tab-btn active" data-section="personal">
+              <span>👤</span> Personal
+            </button>
+            <button class="section-tab-btn" data-section="summary">
+              <span>📝</span> Summary
+            </button>
+            <button class="section-tab-btn" data-section="education">
+              <span>🎓</span> Education
+            </button>
+            <button class="section-tab-btn" data-section="skills">
+              <span>⚡</span> Skills
+            </button>
+            <button class="section-tab-btn" data-section="projects">
+              <span>🚀</span> Projects
+            </button>
+            <button class="section-tab-btn" data-section="experience">
+              <span>💼</span> Experience
+            </button>
+            <button class="section-tab-btn" data-section="certifications">
+              <span>📜</span> Certifications
+            </button>
+            <button class="section-tab-btn" data-section="achievements">
+              <span>🏆</span> Honors
+            </button>
+            <button class="section-tab-btn" data-section="customizer">
+              <span>🎨</span> Styling
+            </button>
+            <button class="section-tab-btn" data-section="checker">
+              <span>📊</span> ATS Score
+            </button>
+            <button class="section-tab-btn" data-section="jobmatch">
+              <span>🎯</span> Job Match
+            </button>
+            <button class="section-tab-btn" data-section="dashboard">
+              <span>📁</span> My Resumes
+            </button>
+          </nav>
+
+          <!-- ==========================================
+               PANEL 1: Personal Information
+               ========================================== -->
+          <div class="form-panel-card form-panel-view" id="panel-personal">
+            <div class="form-panel-header">
+              <div>
+                <h3 class="form-panel-title">👤 Personal Information</h3>
+                <p class="form-panel-subtitle">Contact details and professional branding links.</p>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="personalFullName">Full Name</label>
+                <input type="text" id="personalFullName" class="form-input" placeholder="e.g. Alex Morgan">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="personalJobTitle">Professional Title</label>
+                <input type="text" id="personalJobTitle" class="form-input" placeholder="e.g. Computer Science Student • Software Engineer">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="personalEmail">Email Address</label>
+                <input type="email" id="personalEmail" class="form-input" placeholder="e.g. alex.morgan@university.edu">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="personalPhone">
+                  <span>Phone Number</span>
+                  <span class="form-label-tag">Indian Format (+91)</span>
+                </label>
+                <input type="tel" id="personalPhone" class="form-input" placeholder="e.g. +91 98765 43210">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="personalLocation">Location</label>
+              <input type="text" id="personalLocation" class="form-input" placeholder="e.g. New York, NY (or City, State)">
+            </div>
+
+            <div class="form-row-3">
+              <div class="form-group">
+                <label class="form-label" for="personalGithub">GitHub URL</label>
+                <input type="url" id="personalGithub" class="form-input" placeholder="https://github.com/username">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="personalLinkedin">LinkedIn URL</label>
+                <input type="url" id="personalLinkedin" class="form-input" placeholder="https://linkedin.com/in/username">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="personalPortfolio">Portfolio URL</label>
+                <input type="url" id="personalPortfolio" class="form-input" placeholder="https://yourportfolio.dev">
+              </div>
+            </div>
+          </div>
+
+          <!-- ==========================================
+               PANEL 2: Summary with AI Assist
+               ========================================== -->
+          <div class="form-panel-card form-panel-view" id="panel-summary" style="display:none;">
+            <div class="form-panel-header">
+              <div>
+                <h3 class="form-panel-title">📝 Professional Summary</h3>
+                <p class="form-panel-subtitle">A concise executive introduction highlighting your key strengths.</p>
+              </div>
+              <button class="btn btn-sm btn-ai" id="aiImproveSummaryBtn">
+                <span>✦</span> Improve with AI
+              </button>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="personalSummaryInput">Summary Statement</label>
+              <textarea id="personalSummaryInput" class="form-textarea" style="min-height: 140px;" placeholder="Write a short summary about your background, ambitions, and expertise..."></textarea>
+            </div>
+          </div>
+
+          <!-- ==========================================
+               PANEL 3: Education
+               ========================================== -->
+          <div class="form-panel-card form-panel-view" id="panel-education" style="display:none;">
+            <div class="form-panel-header">
+              <div>
+                <h3 class="form-panel-title">🎓 Education History</h3>
+                <p class="form-panel-subtitle">Degrees, colleges, academic duration, and CGPA.</p>
+              </div>
+              <button class="btn btn-sm btn-outline" id="addEducationBtn">
+                + Add Education
+              </button>
+            </div>
+
+            <div class="items-list-container" id="educationItemsList">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- ==========================================
+               PANEL 4: Categorized Skills
+               ========================================== -->
+          <div class="form-panel-card form-panel-view" id="panel-skills" style="display:none;">
+            <div class="form-panel-header">
+              <div>
+                <h3 class="form-panel-title">⚡ Skill Categories & Competencies</h3>
+                <p class="form-panel-subtitle">Organize your skills by domain (Programming, Web Dev, Data Analytics, AI / ML, etc.).</p>
+              </div>
+              <button class="btn btn-sm btn-outline" id="addNewCategoryBtn">
+                + Create Category
+              </button>
+            </div>
+
+            <!-- Create New Category Row -->
+            <div class="create-category-box" id="newCategoryBox">
+              <input type="text" id="newCategoryNameInput" class="form-input" placeholder="New category name (e.g. Cloud & DevOps, Database, AI / ML)...">
+              <button class="btn btn-primary btn-sm" id="confirmAddCategoryBtn" style="white-space:nowrap;">
+                + Add Category
+              </button>
+            </div>
+
+            <!-- List of Category Cards -->
+            <div class="skill-categories-list" id="skillCategoriesListContainer">
+              <!-- Rendered dynamically by js/app.js -->
+            </div>
+
+            <!-- Quick Add Recommended Categories -->
+            <div class="form-group" style="margin-top:8px;">
+              <label class="form-label">
+                <span>Quick Add Popular Categories</span>
+              </label>
+              <div class="suggested-skills-bar">
+                <button class="suggested-tag-btn" data-add-preset-cat="Programming">+ Programming</button>
+                <button class="suggested-tag-btn" data-add-preset-cat="Web Development">+ Web Development</button>
+                <button class="suggested-tag-btn" data-add-preset-cat="Data Analytics">+ Data Analytics</button>
+                <button class="suggested-tag-btn" data-add-preset-cat="AI / ML">+ AI / ML</button>
+                <button class="suggested-tag-btn" data-add-preset-cat="Cloud & DevOps">+ Cloud & DevOps</button>
+                <button class="suggested-tag-btn" data-add-preset-cat="Database Management">+ Database Management</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==========================================
+               PANEL 5: Projects
+               ========================================== -->
+          <div class="form-panel-card form-panel-view" id="panel-projects" style="display:none;">
+            <div class="form-panel-header">
+              <div>
+                <h3 class="form-panel-title">🚀 Featured Projects</h3>
+                <p class="form-panel-subtitle">Showcase your practical work, tech stack, and deployed URLs.</p>
+              </div>
+              <button class="btn btn-sm btn-outline" id="addProjectBtn">
+                + Add Project
+              </button>
+            </div>
+
+            <div class="items-list-container" id="projectsItemsList">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- ==========================================
+               PANEL 6: Experience
+               ========================================== -->
+          <div class="form-panel-card form-panel-view" id="panel-experience" style="display:none;">
+            <div class="form-panel-header">
+              <div>
+                <h3 class="form-panel-title">💼 Work Experience & Internships</h3>
+                <p class="form-panel-subtitle">Internships, part-time or full-time roles. (Optional for freshers).</p>
+              </div>
+              <button class="btn btn-sm btn-outline" id="addExperienceBtn">
+                + Add Experience
+              </button>
+            </div>
+
+            <div class="items-list-container" id="experienceItemsList">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- ==========================================
+               PANEL 7: Certifications
+               ========================================== -->
+          <div class="form-panel-card form-panel-view" id="panel-certifications" style="display:none;">
+            <div class="form-panel-header">
+              <div>
+                <h3 class="form-panel-title">📜 Certifications</h3>
+                <p class="form-panel-subtitle">Verified courses, certifications, and technical credentials.</p>
+              </div>
+              <button class="btn btn-sm btn-outline" id="addCertificationBtn">
+                + Add Certification
+              </button>
+            </div>
+
+            <div class="items-list-container" id="certificationsItemsList">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- ==========================================
+               PANEL 8: Achievements & Honors
+               ========================================== -->
+          <div class="form-panel-card form-panel-view" id="panel-achievements" style="display:none;">
+            <div class="form-panel-header">
+              <div>
+                <h3 class="form-panel-title">🏆 Honors & Achievements</h3>
+                <p class="form-panel-subtitle">Hackathons, academic distinction, and competitive achievements.</p>
+              </div>
+              <button class="btn btn-sm btn-outline" id="addAchievementBtn">
+                + Add Achievement
+              </button>
+            </div>
+
+            <div class="items-list-container" id="achievementsItemsList">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- ==========================================
+               PANEL 9: Styling & Customizer
+               ========================================== -->
+          <div class="form-panel-card form-panel-view" id="panel-customizer" style="display:none;">
+            <div class="form-panel-header">
+              <div>
+                <h3 class="form-panel-title">🎨 Resume Styling & Appearance</h3>
+                <p class="form-panel-subtitle">Fine-tune template layout, fonts, margins, and accent tones.</p>
+              </div>
+            </div>
+
+            <div class="customizer-grid">
+              <div class="form-group">
+                <label class="form-label" for="custTemplateSelect">Template Layout</label>
+                <select id="custTemplateSelect" class="form-select">
+                  <option value="modern">Modern (Two-Column Sidebar)</option>
+                  <option value="classic">Classic (Executive Single-Column)</option>
+                  <option value="minimal">Minimal (Clean Editorial)</option>
+                  <option value="ats">ATS-Friendly (High Compatibility)</option>
+                  <option value="tech">Tech / Developer (Code & Tag Focus)</option>
+                  <option value="executive">Executive (Prestige Serif Elegance)</option>
+                  <option value="creative">Creative (Bold Header Banner)</option>
+                  <option value="compact">Compact (Dense 1-Page High Fit)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="custFontSelect">Typography</label>
+                <select id="custFontSelect" class="form-select">
+                  <option value="Inter">Inter (Sleek Modern)</option>
+                  <option value="Plus Jakarta Sans">Plus Jakarta Sans (Crisp Tech)</option>
+                  <option value="Outfit">Outfit (Clean Geometric)</option>
+                  <option value="Roboto">Roboto (Classic Professional)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="custFontSizeSelect">Font Size</label>
+                <select id="custFontSizeSelect" class="form-select">
+                  <option value="compact">Compact (Fit More Content)</option>
+                  <option value="normal" selected>Normal (Standard)</option>
+                  <option value="spacious">Spacious (Easy Readability)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="custSpacingSelect">Line Spacing</label>
+                <select id="custSpacingSelect" class="form-select">
+                  <option value="tight">Tight</option>
+                  <option value="normal" selected>Normal</option>
+                  <option value="relaxed">Relaxed</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 10px;">
+              <label class="form-label">Accent Highlight Color</label>
+              <div class="color-picker-row">
+                <button class="color-swatch-btn active" data-color="#7C5CFF" style="background:#7C5CFF;" title="Purple"></button>
+                <button class="color-swatch-btn" data-color="#00D4FF" style="background:#00D4FF;" title="Cyan"></button>
+                <button class="color-swatch-btn" data-color="#10B981" style="background:#10B981;" title="Emerald"></button>
+                <button class="color-swatch-btn" data-color="#3B82F6" style="background:#3B82F6;" title="Sapphire"></button>
+                <button class="color-swatch-btn" data-color="#F43F5E" style="background:#F43F5E;" title="Rose"></button>
+                <button class="color-swatch-btn" data-color="#475569" style="background:#475569;" title="Slate"></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==========================================
+               PANEL 10: Resume Checker & ATS Audit
+               ========================================== -->
+          <div class="form-panel-card form-panel-view" id="panel-checker" style="display:none;">
+            <div class="form-panel-header">
+              <div>
+                <h3 class="form-panel-title">📊 Resume Quality & ATS Score</h3>
+                <p class="form-panel-subtitle">Comprehensive completeness audit and recruiter checklist.</p>
+              </div>
+            </div>
+
+            <!-- Score Hero Card -->
+            <div class="score-card-hero">
+              <div class="circular-score-wrapper">
+                <svg class="circular-score-svg" viewBox="0 0 90 90">
+                  <circle class="score-circle-bg" cx="45" cy="45" r="38"></circle>
+                  <circle class="score-circle-progress" id="scoreProgressCircle" cx="45" cy="45" r="38" style="stroke-dasharray: 238; stroke-dashoffset: 45;"></circle>
+                </svg>
+                <span class="score-text-inner" id="scoreNumericVal">82</span>
+              </div>
+              <div class="score-meta-info">
+                <div class="score-meta-title">Recruiter Ready Score</div>
+                <p class="score-meta-sub">
+                  Calculated based on contact completeness, project depth, skills density, and content clarity.
+                </p>
+              </div>
+            </div>
+
+            <!-- Section Checklist -->
+            <div class="score-checklist" id="checkerListContainer">
+              <!-- Rendered by js/checker.js -->
+            </div>
+
+            <!-- Suggestions -->
+            <div class="form-group">
+              <label class="form-label">
+                <span>✦ Actionable Quality Tips</span>
+              </label>
+              <div id="checkerSuggestionsContainer"></div>
+            </div>
+          </div>
+
+          <!-- ==========================================
+               PANEL 11: Job Description Match
+               ========================================== -->
+          <div class="form-panel-card form-panel-view" id="panel-jobmatch" style="display:none;">
+            <div class="form-panel-header">
+              <div>
+                <h3 class="form-panel-title">🎯 Job Description Matcher</h3>
+                <p class="form-panel-subtitle">Compare your current resume against any job description to discover matching & missing keywords.</p>
+              </div>
+            </div>
+
+            <div class="job-matcher-panel">
+              <div class="form-group">
+                <label class="form-label" for="jobDescriptionInput">Paste Job Posting / Requirements</label>
+                <textarea id="jobDescriptionInput" class="form-textarea" style="min-height: 120px;" placeholder="Paste the job requirements or posting description here (e.g. Seeking a Data Analyst with Python, SQL, Power BI, and Git experience)..."></textarea>
+              </div>
+
+              <button class="btn btn-primary btn-sm" id="runJobMatchBtn">
+                <span>✦</span> Analyze Match
+              </button>
+
+              <div class="job-match-results" id="jobMatchResultsBox" style="display:none;">
+                <div class="job-match-score-row">
+                  <span style="font-weight:700;">Job Match Score:</span>
+                  <span class="badge badge-ai" id="jobMatchScoreText">85% Match</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-bar-fill" id="jobMatchProgressBarFill" style="width: 85%;"></div>
+                </div>
+
+                <div>
+                  <div style="font-size:0.8rem; font-weight:700; color:var(--success); margin-bottom:6px;">Matched Keywords (Found in your Resume):</div>
+                  <div class="job-skills-matched-list" id="matchedSkillsTagsCloud"></div>
+                </div>
+
+                <div>
+                  <div style="font-size:0.8rem; font-weight:700; color:var(--warning); margin-bottom:6px;">Missing High-Frequency Keywords:</div>
+                  <div class="job-skills-matched-list" id="missingSkillsTagsCloud"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==========================================
+               PANEL 12: My Resumes / Dashboard
+               ========================================== -->
+          <div class="form-panel-card form-panel-view" id="panel-dashboard" style="display:none;">
+            <div class="form-panel-header">
+              <div>
+                <h3 class="form-panel-title">📁 Your Saved Resumes</h3>
+                <p class="form-panel-subtitle">Manage multiple career versions (Software Developer, Data Analyst, etc.).</p>
+              </div>
+              <button class="btn btn-primary btn-sm" id="createNewResumeBtn">
+                + Create Resume
+              </button>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="form-row-3" style="margin-bottom:16px;">
+              <div style="background:rgba(13,17,23,0.7); padding:12px; border-radius:8px; border:1px solid var(--border-subtle);">
+                <div style="font-size:0.75rem; color:var(--text-muted);">Total Resumes</div>
+                <div style="font-size:1.3rem; font-weight:800;" id="statTotalResumes">1</div>
+              </div>
+              <div style="background:rgba(13,17,23,0.7); padding:12px; border-radius:8px; border:1px solid var(--border-subtle);">
+                <div style="font-size:0.75rem; color:var(--text-muted);">Current Score</div>
+                <div style="font-size:1.3rem; font-weight:800; color:var(--success);" id="statCurrentScore">82%</div>
+              </div>
+              <div style="background:rgba(13,17,23,0.7); padding:12px; border-radius:8px; border:1px solid var(--border-subtle);">
+                <div style="font-size:0.75rem; color:var(--text-muted);">Active Template</div>
+                <div style="font-size:1.3rem; font-weight:800; color:var(--accent-secondary);" id="statActiveTemplate">MODERN</div>
+              </div>
+            </div>
+
+            <div class="resumes-grid" id="savedResumesList">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: Sticky Live A4 Resume Preview -->
+        <div class="builder-preview-column" id="builderPreviewColumn">
+          <!-- Preview Toolbar Top -->
+          <div class="preview-toolbar-top">
+            <div class="preview-toolbar-left">
+              <span class="badge badge-ai" style="padding:4px 10px; font-size:0.75rem;">
+                <span class="badge-glow-dot"></span> Live A4 View
+              </span>
+              <div class="zoom-controls">
+                <button class="zoom-btn" id="zoomOutBtn" title="Zoom Out">−</button>
+                <span class="zoom-label" id="zoomPercentageLabel">100%</span>
+                <button class="zoom-btn" id="zoomInBtn" title="Zoom In">+</button>
+                <button class="zoom-btn" id="zoomFitBtn" title="Reset Zoom">Fit</button>
+              </div>
+            </div>
+
+            <div class="preview-toolbar-right">
+              <button class="btn btn-outline btn-sm" onclick="window.print()" title="Native Browser Print">
+                🖨 Print
+              </button>
+              <button class="btn btn-primary btn-sm" onclick="window.resumeExporter.exportPDF()" title="Download PDF">
+                📄 Download PDF
+              </button>
+            </div>
+          </div>
+
+          <!-- Scrollable Canvas Viewport -->
+          <div class="preview-canvas-wrapper" id="previewCanvasWrapper">
+            <!-- Simulated A4 Paper -->
+            <div id="resumePreviewPaper" class="resume-paper-page template-modern">
+              <!-- Rendered in real-time by js/live-preview.js -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       AI Writing Assistant Modal (Glass Dialog)
+       ========================================================================== -->
+  <div class="modal-backdrop" id="aiAssistantModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span style="color:var(--accent-secondary);">✦</span>
+          <span>AI Writing Assistant</span>
+        </div>
+        <button class="modal-close" id="aiModalCloseBtn" aria-label="Close Modal">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="ai-modal-content">
+          <!-- Original user text box -->
+          <div class="ai-original-box">
+            <span class="ai-original-label">Original Content</span>
+            <div class="ai-original-text" id="aiOriginalTextDisplay">
+              "Made a Python project for analyzing student performance data..."
+            </div>
+          </div>
+
+          <!-- Tone Selector -->
+          <div class="form-group">
+            <label class="form-label">Desired Tone & Style</label>
+            <div class="ai-tone-options">
+              <button class="ai-tone-btn active" data-tone="impactful">Action & Impact</button>
+              <button class="ai-tone-btn" data-tone="ats">ATS Keyword-Optimized</button>
+              <button class="ai-tone-btn" data-tone="concise">Concise & Direct</button>
+            </div>
+          </div>
+
+          <!-- Action trigger -->
+          <button class="btn btn-ai" id="aiGenerateImprovementBtn" style="width:100%;">
+            <span>✦</span> Improve with AI
+          </button>
+
+          <!-- Animated Loading State -->
+          <div class="ai-loader-box" id="aiLoaderBox">
+            <div class="ai-spinner-sparkle"></div>
+            <div style="font-size:0.92rem; font-weight:600; color:#B5A1FF;">
+              ✦ AI is polishing your content with action verbs...
+            </div>
+          </div>
+
+          <!-- AI Suggestion Result Box -->
+          <div class="ai-suggestion-box" id="aiSuggestionBox" style="display:none;">
+            <div class="ai-suggestion-header">
+              <span class="ai-suggestion-badge">
+                <span>✦</span> AI Suggestion
+              </span>
+              <span style="font-size:0.75rem; color:var(--text-muted);">Editable draft</span>
+            </div>
+            <textarea id="aiSuggestionTextarea" class="ai-suggestion-textarea"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" id="aiCancelBtn">Cancel</button>
+        <button class="btn btn-primary btn-sm" id="aiAcceptBtn">Accept & Apply</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Sticky Toggle Preview Bar -->
+  <div class="mobile-preview-toggle-bar">
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span class="badge badge-ai" style="font-size:0.75rem;">78% Complete</span>
+    </div>
+    <button class="btn btn-primary btn-sm" id="mobileTogglePreviewBtn">
+      👁 View Live Preview
+    </button>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ==========================================================================
+       Site Footer
+       ========================================================================== -->
+  <footer class="site-footer" style="border-top: 1px solid var(--border-subtle); padding: 50px 0; background: var(--bg-secondary);">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
+      <div>
+        <a href="#hero" class="brand-logo" style="margin-bottom:8px;">
+          <span class="brand-icon">✦</span>
+          <span class="brand-name">Resume<span>AI</span></span>
+        </a>
+        <p style="font-size:0.85rem; color:var(--text-muted); max-width:380px;">
+          Empowering students, developers, and job seekers with modern AI writing tools and recruiter-friendly resume formats.
+        </p>
+      </div>
+      <div style="font-size:0.85rem; color:var(--text-muted); text-align:right;">
+        <div>Designed with modern dark aesthetics & privacy first.</div>
+        <div style="margin-top:4px;">No private data sent to untrusted third parties.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       ResumeAI — Voice Assistant Floating Trigger & Interactive Panel
+       ========================================================================== -->
+  <!-- Floating Mic FAB Button -->
+  <div class="voice-assistant-fab-container">
+    <button class="voice-assistant-fab idle" id="voiceFab" aria-label="Open ResumeAI Voice Assistant" aria-expanded="false" title="Click to speak with ResumeAI Assistant">
+      <div class="voice-fab-icon-wrap" aria-hidden="true">
+        <span>🎙️</span>
+      </div>
+      <div class="voice-fab-badge-state">
+        <span class="voice-fab-title">ResumeAI Voice</span>
+        <span class="voice-fab-status-text" id="voiceFabStatus">Click to speak</span>
+      </div>
+    </button>
+  </div>
+
+  <!-- Voice Assistant Drawer / Panel -->
+  <div class="voice-assistant-panel" id="voiceAssistantPanel" role="dialog" aria-modal="false" aria-label="ResumeAI Voice Assistant" aria-hidden="true">
+    <!-- Header -->
+    <div class="voice-panel-header">
+      <div class="voice-panel-title-area">
+        <div class="voice-assistant-avatar" aria-hidden="true">🎙️</div>
+        <div>
+          <h3 class="voice-panel-title">
+            ResumeAI Assistant
+            <span class="voice-panel-state-pill idle" id="voicePanelStatePill">IDLE</span>
+          </h3>
+        </div>
+      </div>
+      <div class="voice-panel-actions">
+        <button class="voice-action-icon-btn" id="voiceCloseBtn" title="Close Voice Assistant" aria-label="Close Voice Assistant">✕</button>
+      </div>
+    </div>
+
+    <!-- Settings Bar (TTS Audio Toggle, Language) -->
+    <div class="voice-settings-strip">
+      <div class="voice-toggle-wrap active" id="voiceTtsToggle" title="Toggle assistant speech voice responses">
+        <div class="voice-toggle-switch"></div>
+        <span class="voice-toggle-label">Voice Output: ON</span>
+      </div>
+      <select class="voice-lang-select" id="voiceLangSelect" aria-label="Select voice language">
+        <option value="en-US" selected>English (India / US)</option>
+        <option value="kn-IN">Kannada (Coming Soon)</option>
+        <option value="hi-IN">Hindi (Coming Soon)</option>
+      </select>
+    </div>
+
+    <!-- Chat / Message Stream -->
+    <div class="voice-panel-body" id="voiceMsgContainer" aria-live="polite">
+      <!-- Injected dynamically by voiceAssistant.js -->
+    </div>
+
+    <!-- Quick Suggestion Chips -->
+    <div class="voice-suggestions-wrap">
+      <button class="voice-suggestion-chip" data-cmd="Add Python, Java and SQL to skills">+ Add Skills</button>
+      <button class="voice-suggestion-chip" data-cmd="Open education">🎓 Education</button>
+      <button class="voice-suggestion-chip" data-cmd="Add a project">🚀 Add Project</button>
+      <button class="voice-suggestion-chip" data-cmd="Check my resume">📊 Check Score</button>
+      <button class="voice-suggestion-chip" data-cmd="Use the modern template">🎨 Modern</button>
+      <button class="voice-suggestion-chip" data-cmd="Help">❓ Help</button>
+    </div>
+
+    <!-- Live Transcript Bar -->
+    <div class="voice-live-transcript-strip" id="voiceLiveTranscriptStrip" style="display:none;">
+      <span class="voice-live-dot" aria-hidden="true"></span>
+      <span class="voice-live-text" id="voiceLiveText">Listening...</span>
+    </div>
+
+    <!-- Footer Controls -->
+    <div class="voice-panel-footer">
+      <div class="voice-primary-mic-row">
+        <button class="voice-main-mic-btn idle" id="voiceMainMicBtn" aria-label="Toggle voice microphone">
+          <span style="font-size:1.1rem;" aria-hidden="true">🎤</span>
+          <span class="voice-btn-label">Click to speak</span>
+        </button>
+        <button class="voice-stop-btn" id="voiceStopBtn" title="Stop listening" aria-label="Stop listening">
+          ⏹ Stop
+        </button>
+      </div>
+
+      <!-- Fallback / Silent Keyboard Input -->
+      <div class="voice-text-fallback-row">
+        <input type="text" class="voice-text-input" id="voiceTextInput" placeholder="Type a voice command (e.g. Add Python)..." aria-label="Type a voice command">
+        <button class="voice-text-send-btn" id="voiceTextSendBtn" title="Send voice command" aria-label="Send command">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Logic Scripts -->
+  <script src="js/state.js"></script>
+  <script src="js/live-preview.js"></script>
+  <script src="js/ai-assistant.js"></script>
+  <script src="js/checker.js"></script>
+  <script src="js/export-pdf.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/voiceCommands.js"></script>
+  <script src="js/voiceAssistant.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
