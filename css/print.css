@@ -1,0 +1,88 @@
+/* ==========================================================================
+   ResumeAI — Dedicated Print & PDF Export Stylesheet
+   Ensures pixel-perfect single & multi-page A4 printing with zero artifacts
+   ========================================================================== */
+
+@page {
+  size: A4 portrait;
+  margin: 10mm 12mm;
+}
+
+@media print {
+  /* Hide all app chrome */
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .site-header,
+  .hero-section,
+  .trust-bar-section,
+  .section,
+  .builder-header-bar,
+  .builder-editor-column,
+  .preview-toolbar-top,
+  .modal-backdrop,
+  .toast-container,
+  .mobile-preview-toggle-bar,
+  .site-footer,
+  .no-print {
+    display: none !important;
+  }
+
+  .builder-section {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .builder-layout-grid {
+    display: block !important;
+  }
+
+  .builder-preview-column {
+    position: static !important;
+    max-height: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .preview-canvas-wrapper {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    max-height: none !important;
+    display: block !important;
+  }
+
+  .resume-paper-page {
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  /* Prevent awkward page breaks */
+  .entry-block,
+  .resume-header,
+  .section-heading {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Ensure modern template 2-column sidebar prints correctly */
+  .template-modern {
+    margin: 0 !important;
+  }
+}

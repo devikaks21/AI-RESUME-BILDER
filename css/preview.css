@@ -1,0 +1,907 @@
+/* ==========================================================================
+   ResumeAI — Live Resume Preview & 4 Professional Templates
+   Classic, Modern (2-Col), Minimal, ATS-Friendly
+   ========================================================================== */
+
+/* Preview Column & Frame Container */
+.builder-preview-column {
+  position: sticky;
+  top: calc(var(--navbar-height) + 20px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: calc(100vh - var(--navbar-height) - 40px);
+}
+
+.preview-toolbar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
+  gap: 12px;
+}
+
+.preview-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.preview-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 3px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.zoom-btn {
+  padding: 3px 8px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  border-radius: 4px;
+}
+
+.zoom-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+}
+
+.zoom-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  min-width: 36px;
+  text-align: center;
+}
+
+/* Scrollable Canvas Container */
+.preview-canvas-wrapper {
+  background: #090D14;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 190px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* A4 Sheet Simulation */
+.resume-paper-page {
+  width: 100%;
+  max-width: 794px; /* A4 width at 96 DPI */
+  min-height: 1123px; /* A4 height at 96 DPI */
+  background: #FFFFFF;
+  color: #111827;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  padding: 42px 46px;
+  font-family: var(--font-resume, 'Inter', sans-serif);
+  line-height: 1.5;
+  transition: all var(--transition-normal);
+  transform-origin: top center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Base Document Typography for Print & Preview */
+.resume-paper-page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.resume-paper-page a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   TEMPLATE 01: CLASSIC (Executive Single-Column)
+   ========================================================================== */
+.template-classic {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.template-classic .resume-header {
+  text-align: center;
+  border-bottom: 2px solid var(--accent-color, #7C5CFF);
+  padding-bottom: 14px;
+}
+
+.template-classic .resume-name {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #111827;
+  text-transform: uppercase;
+}
+
+.template-classic .resume-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-color, #7C5CFF);
+  margin-top: 4px;
+  letter-spacing: 0.04em;
+}
+
+.template-classic .resume-contacts {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 12px;
+  color: #4B5563;
+  margin-top: 8px;
+}
+
+.template-classic .section-heading {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-color, #7C5CFF);
+  border-bottom: 1px solid #E5E7EB;
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+}
+
+.template-classic .resume-body-text {
+  font-size: 12px;
+  color: #374151;
+  line-height: 1.55;
+}
+
+.template-classic .entry-block {
+  margin-bottom: 12px;
+}
+
+.template-classic .entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2px;
+}
+
+.template-classic .entry-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.template-classic .entry-subtitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4B5563;
+}
+
+.template-classic .entry-date {
+  font-size: 11px;
+  color: #6B7280;
+  font-weight: 500;
+}
+
+.template-classic .skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.template-classic .skill-pill {
+  font-size: 11px;
+  background: #F3F4F6;
+  color: #1F2937;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   TEMPLATE 02: MODERN (Two-Column with Sidebar)
+   ========================================================================== */
+.template-modern {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 28px;
+  padding: 0;
+  margin: -42px -46px; /* Fill full edge */
+  min-height: 1123px;
+}
+
+.template-modern .modern-sidebar {
+  background: #0F172A;
+  color: #F8FAFC;
+  padding: 36px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.template-modern .modern-main {
+  padding: 36px 36px 36px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.template-modern .resume-name {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0F172A;
+  line-height: 1.15;
+}
+
+.template-modern .resume-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-color, #7C5CFF);
+  margin-top: 4px;
+}
+
+.template-modern .sidebar-heading {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #94A3B8;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+}
+
+.template-modern .sidebar-contacts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 11px;
+  color: #CBD5E1;
+}
+
+.template-modern .sidebar-contacts-list a {
+  color: #E2E8F0;
+  word-break: break-all;
+}
+
+.template-modern .modern-skill-pill {
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  padding: 4px 9px;
+  border-radius: 4px;
+  font-weight: 500;
+  display: inline-block;
+  margin: 3px 2px;
+}
+
+.template-modern .section-heading {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-color, #7C5CFF);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.template-modern .section-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #E2E8F0;
+}
+
+.template-modern .entry-block {
+  margin-bottom: 14px;
+  position: relative;
+  padding-left: 14px;
+  border-left: 2px solid #E2E8F0;
+}
+
+.template-modern .entry-block::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-color, #7C5CFF);
+}
+
+.template-modern .entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.template-modern .entry-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.template-modern .entry-subtitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-color, #7C5CFF);
+}
+
+.template-modern .entry-date {
+  font-size: 11px;
+  color: #64748B;
+}
+
+.template-modern .resume-body-text {
+  font-size: 12px;
+  color: #334155;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   TEMPLATE 03: MINIMAL (Crisp Editorial Whitespace)
+   ========================================================================== */
+.template-minimal {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.template-minimal .resume-header {
+  padding-bottom: 16px;
+}
+
+.template-minimal .resume-name {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #000000;
+}
+
+.template-minimal .resume-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4B5563;
+  margin-top: 2px;
+}
+
+.template-minimal .resume-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 11px;
+  color: #6B7280;
+  margin-top: 8px;
+}
+
+.template-minimal .section-heading {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.template-minimal .resume-body-text {
+  font-size: 12px;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.template-minimal .entry-block {
+  margin-bottom: 12px;
+}
+
+.template-minimal .entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.template-minimal .entry-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.template-minimal .entry-date {
+  font-size: 11px;
+  color: #9CA3AF;
+}
+
+.template-minimal .skills-text-list {
+  font-size: 12px;
+  color: #374151;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   TEMPLATE 04: ATS-FRIENDLY (High-Contrast Parser Optimized)
+   ========================================================================== */
+.template-ats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: 'Arial', sans-serif;
+  color: #000000;
+}
+
+.template-ats .resume-header {
+  text-align: center;
+  border-bottom: 1px solid #000000;
+  padding-bottom: 8px;
+}
+
+.template-ats .resume-name {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+}
+
+.template-ats .resume-title {
+  font-size: 13px;
+  font-weight: normal;
+  margin-top: 2px;
+}
+
+.template-ats .resume-contacts {
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.template-ats .section-heading {
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-bottom: 1px solid #000000;
+  padding-bottom: 2px;
+  margin-bottom: 6px;
+  margin-top: 6px;
+}
+
+.template-ats .entry-block {
+  margin-bottom: 8px;
+}
+
+.template-ats .entry-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.template-ats .entry-title {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.template-ats .entry-date {
+  font-size: 11px;
+}
+
+.template-ats .resume-body-text {
+  font-size: 11px;
+  line-height: 1.45;
+  color: #111111;
+}
+
+.template-ats .skills-line {
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   TEMPLATE 05: TECH / DEVELOPER (Software & Open Source Focus)
+   ========================================================================== */
+.template-tech {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Inter', monospace;
+}
+
+.template-tech .resume-header {
+  border-bottom: 2px solid var(--accent-color, #7C5CFF);
+  padding-bottom: 12px;
+  background: #FAFAFA;
+  padding: 16px;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+}
+
+.template-tech .resume-name {
+  font-size: 24px;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.02em;
+}
+
+.template-tech .resume-name::before {
+  content: '>';
+  color: var(--accent-color, #7C5CFF);
+  margin-right: 6px;
+  font-weight: 900;
+}
+
+.template-tech .resume-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4B5563;
+  margin-top: 2px;
+}
+
+.template-tech .resume-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 11px;
+  color: #6B7280;
+  margin-top: 6px;
+}
+
+.template-tech .section-heading {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-color, #7C5CFF);
+  border-bottom: 1px dashed #D1D5DB;
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+}
+
+.template-tech .section-heading::before {
+  content: '// ';
+  color: #9CA3AF;
+}
+
+.template-tech .entry-block {
+  margin-bottom: 12px;
+  background: #F9FAFB;
+  border: 1px solid #F3F4F6;
+  border-left: 3px solid var(--accent-color, #7C5CFF);
+  padding: 10px 14px;
+  border-radius: 0 4px 4px 0;
+}
+
+.template-tech .entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.template-tech .entry-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.template-tech .entry-subtitle {
+  font-size: 11px;
+  font-weight: 600;
+  color: #4B5563;
+}
+
+.template-tech .entry-date {
+  font-size: 10px;
+  color: #6B7280;
+  background: #E5E7EB;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.template-tech .resume-body-text {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #374151;
+  margin-top: 4px;
+}
+
+.template-tech .tech-chip {
+  font-size: 10.5px;
+  background: #EEF2FF;
+  border: 1px solid #C7D2FE;
+  color: #3730A3;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  display: inline-block;
+  margin: 2px;
+}
+
+/* ==========================================================================
+   TEMPLATE 06: EXECUTIVE / ELEGANT SERIF (Management, Consulting & Law)
+   ========================================================================== */
+.template-executive {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.template-executive .resume-header {
+  text-align: center;
+  border-bottom: 3px double #1F2937;
+  padding-bottom: 16px;
+}
+
+.template-executive .resume-name {
+  font-size: 28px;
+  font-weight: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #111827;
+}
+
+.template-executive .resume-title {
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-color, #7C5CFF);
+  margin-top: 6px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+.template-executive .resume-contacts {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 11px;
+  color: #4B5563;
+  margin-top: 10px;
+  font-family: 'Inter', sans-serif;
+}
+
+.template-executive .section-heading {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #111827;
+  border-bottom: 1px solid #9CA3AF;
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+}
+
+.template-executive .resume-body-text {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #27272A;
+}
+
+.template-executive .entry-block {
+  margin-bottom: 14px;
+}
+
+.template-executive .entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.template-executive .entry-title {
+  font-size: 13px;
+  font-weight: bold;
+  color: #111827;
+}
+
+.template-executive .entry-subtitle {
+  font-size: 12px;
+  font-style: italic;
+  color: #4B5563;
+}
+
+.template-executive .entry-date {
+  font-size: 11px;
+  color: #6B7280;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ==========================================================================
+   TEMPLATE 07: CREATIVE / BANNER (Bold Modern Startup Aesthetic)
+   ========================================================================== */
+.template-creative {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: -42px -46px 0;
+  padding: 0 0 30px;
+}
+
+.template-creative .creative-banner {
+  background: var(--accent-color, #7C5CFF);
+  color: #FFFFFF;
+  padding: 34px 46px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.template-creative .resume-name {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+}
+
+.template-creative .resume-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.template-creative .resume-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 8px;
+}
+
+.template-creative .creative-body {
+  padding: 0 46px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.template-creative .section-heading {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent-color, #7C5CFF);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.template-creative .section-heading::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: #F3F4F6;
+}
+
+.template-creative .entry-block {
+  margin-bottom: 12px;
+}
+
+.template-creative .entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.template-creative .entry-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.template-creative .entry-subtitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-color, #7C5CFF);
+}
+
+.template-creative .entry-date {
+  font-size: 11px;
+  color: #6B7280;
+}
+
+.template-creative .creative-skill-pill {
+  font-size: 11px;
+  background: #F3F4F6;
+  border: 1px solid #E5E7EB;
+  color: #1F2937;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  display: inline-block;
+  margin: 2px;
+}
+
+/* ==========================================================================
+   TEMPLATE 08: COMPACT (Maximum Content Efficiency / 1-Page Layout)
+   ========================================================================== */
+.template-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px 30px;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.template-compact .resume-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 2px solid #111827;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+}
+
+.template-compact .resume-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1;
+}
+
+.template-compact .resume-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-color, #7C5CFF);
+  margin-top: 2px;
+}
+
+.template-compact .resume-contacts {
+  font-size: 10px;
+  text-align: right;
+  color: #4B5563;
+  line-height: 1.3;
+}
+
+.template-compact .section-heading {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-color, #7C5CFF);
+  border-bottom: 1px solid #E5E7EB;
+  padding-bottom: 2px;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+
+.template-compact .entry-block {
+  margin-bottom: 6px;
+}
+
+.template-compact .entry-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.template-compact .entry-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.template-compact .entry-date {
+  font-size: 10px;
+  color: #6B7280;
+}
+
+.template-compact .resume-body-text {
+  font-size: 10.5px;
+  color: #374151;
+  line-height: 1.38;
+}
+
